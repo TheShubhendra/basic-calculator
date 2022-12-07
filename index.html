@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title> Basic calculator By Shubhendra Kushwaha
+        </title>
+        <meta name="theme" content="#00d2c6">
+        <meta name="description" content="A Basic calculator">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            body{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-family: monospace;
+                background-color: #262a3c;
+            }
+            .calculator{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                width: 350px;
+                border-radius: 20px;
+                color: grey;
+                background-color:  #00d2c6;
+                padding: 1.2em .2em;
+                
+            }
+            .calculator #display{
+                border-radius: 20px;
+                display: flex;
+                align-items: center;
+                padding: .3em;
+                margin: 0.5em 0;
+                font-size: 30px;
+                width: 85%;
+                height: 35px;
+                background-color: white;
+                border: none;
+                outline: none;
+                opacity: 0.6;
+                color: rgb(3, 83, 181);
+            }
+
+            button{
+                gap: 3;
+                text-align: center;
+                width:60px;
+                height: 60px;
+                font-size: 25px;
+                background: #00d2c6;
+                border-radius: 15px;
+                border: none;
+                margin: 5px;
+                box-shadow: 12px 12px 24px 0 rgba(0, 0, 0, 0.2),
+    -12px -12px 24px 0 rgba(0, 236, 245, 0.5);
+            }
+            .buttons button#zero{
+                width: 130px;
+            }
+            .buttons button#equal{
+                height: 130px;
+            }
+            .buttons{
+                display: flex;
+                justify-content: flex-end;
+                padding: 0;
+                width: 100%;
+            }
+            .number-buttons{
+                display: flex;
+                flex-wrap: wrap;
+                width: 100%;
+                padding: 0.8em;
+            }
+            .operation-buttons{
+                display: flex;
+                flex-wrap: wrap;
+                width: 30%;
+                justify-content: flex-end;
+                align-self: flex-end;
+                padding: 0.8em;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="calculator">
+            <input id="display"/>
+            <div class="buttons">
+                <div class="number-buttons">
+                    <button>(</button>
+                    <button>)</button>
+                    <button>*</button>
+                    <button>7</button>
+                    <button>8</button>
+                    <button>9</button>
+                    <button>4</button>
+                    <button>5</button>
+                    <button>6</button>
+                    <button>1</button>
+                    <button>2</button>
+                    <button>3</button>
+                    <button id="zero">0</button>
+                    <button>.</button>
+                </div>
+                <div class="operation-buttons">
+                    <button>/</button>
+                    <button>+</button>
+                    <button>-</button>
+                    <button id="equal">=</button>
+                </div>
+
+            </div>
+        </div>
+        <script src="" async defer></script>
+    </body>
+
+    <script>
+        let error=0;
+        const display = document.getElementById("display");
+        document.querySelectorAll("button:not(#equal)").forEach((button)=>{
+            button.addEventListener("click",(e)=>{
+            if(display.value==='error :(' || display.value===undefined){
+                display.value='';
+            }
+            display.value+=e.target.innerHTML;
+            })
+        })
+        document.getElementById("equal").addEventListener("click",(e)=>{
+            let expression = display.value;
+            try {
+                display.value = eval(expression);
+            } catch (err) {
+                display.value = "error :(";
+                error+=1;
+                console.log(error);
+                if(error>=5){
+                    alert("I can see you are trying to break me 🙂. I am a basic calculator so expect basic calculations only")
+                error=-5;
+                }
+            }
+            
+        });
+    </script>
+</html>
